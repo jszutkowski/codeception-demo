@@ -1,0 +1,17 @@
+{
+    "name": "jszutkowski/codeception-bot",
+    "authors": [
+        {
+            "name": "Jarosław Szutkowski",
+            "email": "szutkowski@o2.pl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "codeception/codeception": "^3.0"
+    }
+}
