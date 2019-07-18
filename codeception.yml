@@ -1,4 +1,3 @@
-# suite config
 suites:
     acceptance:
         actor: AcceptanceTester
@@ -6,45 +5,35 @@ suites:
         modules:
             enabled:
                 - WebDriver:
-                    url: http://localhost
-                    browser: chrome
+                      port: 9515
+                      browser: 'chrome'
+                      window_size: '1920x1080'
+                      url: 'http://localhost/'
+                      capabilities:
+                          chromeOptions:
+                              args: ["window-size=1376x768", "disable-dev-shm-usage", "no-sandbox", "disable-infobars", "headless", "disable-gpu"]
+                              binary: "/usr/bin/google-chrome-stable"
                 - \Helper\Acceptance
 
-        # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion
             - Codeception\Step\TryTo
             - Codeception\Step\Retry
 
-modules:
-    config:
-        # Chrome headless, watch the binary
-        WebDriver:
-            port: 9515
-            browser: 'chrome'
-            window_size: '1920x1080'
-            url: 'http://localhost/'
-            capabilities:
-                chromeOptions:
-                    args: ["window-size=1376x768", "disable-dev-shm-usage", "no-sandbox", "disable-infobars", "headless", "disable-gpu"]
-                    binary: "/usr/bin/google-chrome-stable"
-
-
 extensions:
     enabled: [Codeception\Extension\RunFailed]
 
-params: 
+params:
     - env
 
-gherkin: []    
+gherkin: []
 
-# additional paths
 paths:
-    tests: src
-    support: src/Support
-    output: data/_output
-    data: data/_data
-    envs: data/_envs
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
 
 settings:
     shuffle: false
