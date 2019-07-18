@@ -2,7 +2,9 @@ version: "3"
 services:
   php:
     build: .
+    command: "php -S 0.0.0.0:8080 -t public"
+    ports:
+      - "8080:8080"
     working_dir: "/app"
     volumes:
       - ".:/app"
-    command: "chromedriver --url-base=/wd/hub"

@@ -1,6 +1,8 @@
 FROM php:7.3
 
-RUN apt-get update && apt-get install -y gnupg2 wget zip unzip nano mc
+RUN apt-get update && apt-get install -y gnupg2 wget zip unzip zlib1g-dev libzip-dev
+
+RUN docker-php-ext-install zip
 
 # Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -20,5 +22,3 @@ RUN mv chromedriver /usr/bin/chromedriver
 USER 1000
 
 WORKDIR /app
-
-CMD sh /app/bin/codeception.sh
